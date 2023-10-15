@@ -1,4 +1,4 @@
-import { EntitySchema } from 'typeorm';
+import { EntitySchema } from "typeorm";
 
 export default new EntitySchema({
   name: "Category", // Will use table name `category` as default behavior.
@@ -14,6 +14,3 @@ export default new EntitySchema({
     },
   },
 });
-
-
-

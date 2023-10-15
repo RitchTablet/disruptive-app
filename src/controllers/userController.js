@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { dataSource } from "../database/typeorm.config.js";
 
 export const getAllUsers = async (req, res) => {
-  const userRepository = dataSource.getRepository('User');
+  const userRepository = dataSource.getRepository("User");
   const users = await userRepository.find({});
   res.json(users);
 };
@@ -11,7 +11,7 @@ export const getAllUsers = async (req, res) => {
 export const createUser = async (req, res) => {
   const user = req.body;
   const { password } = user;
-  const userRepository = dataSource.getRepository('User');
+  const userRepository = dataSource.getRepository("User");
   const secret = process.env.JWT;
   const hashedPassword = bcrypt.hashSync(password, 10);
   const access_token = jwt.sign(user, secret, {

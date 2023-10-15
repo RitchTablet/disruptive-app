@@ -1,39 +1,39 @@
-import { EntitySchema } from 'typeorm';
+import { EntitySchema } from "typeorm";
 
 export default new EntitySchema({
-  name: 'User',
-  tableName: 'users',
+  name: "User",
+  tableName: "users",
   columns: {
     id: {
       primary: true,
-      type: 'int',
+      type: "int",
       generated: true,
     },
     username: {
-      type: 'varchar',
+      type: "varchar",
       unique: true,
     },
     password: {
-      type: 'varchar',
+      type: "varchar",
     },
     email: {
-      type: 'varchar',
+      type: "varchar",
       unique: true,
     },
     fullName: {
-      type: 'varchar',
+      type: "varchar",
     },
     dateOfBirth: {
-      type: 'date',
+      type: "date",
     },
     gender: {
-      type: 'varchar',
+      type: "varchar",
     },
     location: {
-      type: 'varchar',
+      type: "varchar",
     },
     profilePicture: {
-      type: 'varchar',
+      type: "varchar",
     },
   },
 });
