@@ -57,3 +57,6 @@ coverage/
 *.pem
 *.log
 *.key
+
+# Docker data
+postgres_data
