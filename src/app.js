@@ -9,6 +9,7 @@ import cors from "cors";
 import morgan from "morgan";
 import logger from "./config/logger.js";
 import { dataSource } from "./database/typeorm.config.js";
+import { setupSwagger } from "./config/swagger/config.swagger.js";
 
 async function bootstrap() {
   app.use(cors({ origin: "*" }));
@@ -17,6 +18,8 @@ async function bootstrap() {
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
   app.use("/api", router);
+
+  setupSwagger(app);
 
   const port = process.env.PORT || 3001;
   await dataSource.initialize();
