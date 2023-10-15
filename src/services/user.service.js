@@ -11,7 +11,12 @@ class UserService {
   }
 
   findOneByLogin(email, password) {
-    return this.userRepository.find({ email, password });
+    return this.userRepository.findOne({
+      where: {
+        email: email,
+        password: password,
+      },
+    });
   }
 
   async create(user) {

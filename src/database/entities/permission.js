@@ -1,8 +1,8 @@
 import { EntitySchema } from "typeorm";
 
 export default new EntitySchema({
-  name: "Category",
-  tableName: "categories",
+  name: "Permission",
+  tableName: "permissions",
   columns: {
     id: {
       primary: true,
@@ -11,6 +11,13 @@ export default new EntitySchema({
     },
     name: {
       type: "varchar",
+    },
+  },
+  relations: {
+    roles: {
+      target: "RolePermission",
+      type: "one-to-many",
+      inverseSide: "permission",
     },
   },
 });

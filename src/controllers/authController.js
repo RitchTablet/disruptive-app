@@ -1,5 +1,6 @@
 import validator from "validator";
 import UserService from "../services/user.service.js";
+import JwtService from "../services/jwt.service.js";
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -16,5 +17,9 @@ export const login = async (req, res) => {
 
   if (!user) return res.status(401).json({ message: "Unauthorized" });
 
-  return res.status(201).json(user);
+  console.log({ user });
+  const jwtService = new JwtService();
+  const access_token = jwtService.sign(user);
+
+  return res.status(201).json({ access_token });
 };

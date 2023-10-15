@@ -36,4 +36,11 @@ export default new EntitySchema({
       type: "varchar",
     },
   },
+  relations: {
+    roles: {
+      target: "UserRole",
+      type: "one-to-many",
+      inverseSide: "user",
+    },
+  },
 });

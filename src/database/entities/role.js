@@ -1,8 +1,8 @@
 import { EntitySchema } from "typeorm";
 
 export default new EntitySchema({
-  name: "Category",
-  tableName: "categories",
+  name: "Role",
+  tableName: "roles",
   columns: {
     id: {
       primary: true,
