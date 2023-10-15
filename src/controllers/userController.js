@@ -1,26 +1,20 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import { dataSource } from "../database/typeorm.config.js";
+import JwtService from "../services/jwt.service.js";
+import UserService from "../services/user.service.js";
 
 export const getAllUsers = async (req, res) => {
-  const userRepository = dataSource.getRepository("User");
-  const users = await userRepository.find({});
+  const userService = new UserService();
+  const users = await userService.find();
   res.json(users);
 };
 
 export const createUser = async (req, res) => {
   const user = req.body;
-  const { password } = user;
-  const userRepository = dataSource.getRepository("User");
-  const secret = process.env.JWT;
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  const access_token = jwt.sign(user, secret, {
-    expiresIn: 86400,
-  });
+  const jwtService = new JwtService();
+  const userService = new UserService();
 
-  user.password = hashedPassword;
-  const usersaved = await userRepository.save(user);
-  delete usersaved.password;
-  const response = { access_token, user: usersaved };
+  const userSaved = await userService.create(user);
+  const access_token = jwtService.sign(userSaved);
+
+  const response = { access_token, user: userSaved };
   res.status(201).json(response);
 };

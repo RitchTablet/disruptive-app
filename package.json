@@ -23,6 +23,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
     "typeorm": "^0.3.17",
+    "validator": "^13.11.0",
     "winston": "^3.11.0"
   },
   "devDependencies": {
