@@ -1,6 +1,6 @@
 import { dataSource } from "../database/typeorm.config.js";
 
-class Permision {
+class PermissionsServices {
   constructor() {
     this.roleRepository = dataSource.getRepository("Permission");
   }
@@ -14,4 +14,4 @@ class Permision {
   }
 }
 
-export default Permision;
+export default PermissionsServices;

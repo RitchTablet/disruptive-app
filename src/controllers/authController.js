@@ -10,14 +10,13 @@ export const login = async (req, res) => {
     !validator.isEmail(email) ||
     validator.isEmpty(password)
   )
-    return res.status(401).json({ message: "Unauthorized" });
+    return res.sendStatus(400);
 
   const userService = new UserService();
   const user = await userService.findOneByLogin(email, password);
 
-  if (!user) return res.status(401).json({ message: "Unauthorized" });
+  if (!user) return res.sendStatus(400);
 
-  console.log({ user });
   const jwtService = new JwtService();
   const access_token = jwtService.sign(user);
 

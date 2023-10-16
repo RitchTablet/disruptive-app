@@ -6,6 +6,8 @@ import Role from "./entities/role.js";
 import UserRole from "./entities/user-role.js";
 import Permision from "./entities/permission.js";
 import RolePermission from "./entities/role-permission.js";
+import Theme from "./entities/Theme.js";
+import ContentTypePermission from "./entities/ContentTypePermission.js";
 
 config(); // Configura las variables de entorno desde el archivo .env
 
@@ -17,7 +19,16 @@ const dataSource = new typeorm.DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  entities: [Category, User, Role, UserRole, Permision, RolePermission],
+  entities: [
+    Category,
+    User,
+    Role,
+    UserRole,
+    Permision,
+    RolePermission,
+    Theme,
+    ContentTypePermission,
+  ],
 });
 
 export { dataSource };

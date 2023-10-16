@@ -11,7 +11,7 @@ import PermissionsRoutes from "./permissions.routes.js";
 
 router.use("/echo", authenticate, EchoRoutes);
 router.use("/users", authenticate, UserRoutes);
-router.use("/auth", authenticate, AuthRoutes);
+router.use("/auth", AuthRoutes);
 router.use("/roles", authenticate, RolesRoutes);
 router.use("/permissions", authenticate, PermissionsRoutes);
 

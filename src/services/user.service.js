@@ -7,16 +7,32 @@ class UserService {
   }
 
   find() {
-    return this.userRepository.find();
+    return this.userRepository.find({
+      select: [
+        "id",
+        "username",
+        "email",
+        "fullName",
+        "dateOfBirth",
+        "gender",
+        "location",
+        "profilePicture",
+      ],
+    });
   }
 
-  findOneByLogin(email, password) {
-    return this.userRepository.findOne({
-      where: {
-        email: email,
-        password: password,
-      },
-    });
+  async findOneByLogin(email, password) {
+    const user = await this.userRepository.findOne({ where: { email } });
+
+    if (user) {
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (isPasswordValid) {
+        return user;
+      }
+    }
+
+    return null;
   }
 
   async create(user) {
